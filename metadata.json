@@ -1,0 +1,5 @@
+{
+  "name": "Copy of MathStepGrader AI",
+  "description": "An AI-powered grading assistant for handwritten math exams. It analyzes the exam question, answer key, and student work to provide step-by-step grading, feedback, and score calculation based on logic and method.",
+  "requestFramePermissions": []
+}
