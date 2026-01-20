@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <!-- Nếu repo có file /vite.svg trong public thì giữ, không có thì đổi sang /favicon.svg hoặc bỏ dòng này -->
+    <!-- Nếu repo không có /vite.svg (public) thì đổi sang /favicon.ico hoặc file icon bạn có -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MathStepGrader AI</title>
@@ -38,14 +38,14 @@
     <!-- HTML2PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <!-- Giữ nguyên toàn bộ style inline của bạn -->
+    <!-- Giữ nguyên style inline của bạn -->
     <style>
       :root {
         --bs-primary: #0d9488; /* Teal 600 */
         --bs-primary-rgb: 13, 148, 136;
         --bs-secondary: #64748b;
         --bs-body-bg: #f8fafc;
-        --bs-body-font-family: 'Inter', sans-serif;
+        --bs-body-font-family: "Inter", sans-serif;
       }
 
       body {
@@ -89,10 +89,37 @@
       }
 
       /* Markdown Content Styling */
-      .markdown-content h1 { font-size: 1.75rem; font-weight: 700; color: #0f766e; border-bottom: 2px solid #ccfbf1; padding-bottom: 0.5rem; margin-top: 1.5rem; margin-bottom: 1rem; }
-      .markdown-content h2 { font-size: 1.4rem; font-weight: 600; color: #115e59; margin-top: 1.5rem; margin-bottom: 1rem; background-color: #f0fdfa; padding: 0.5rem; border-left: 4px solid #0d9488; border-radius: 4px; }
-      .markdown-content h3 { font-size: 1.2rem; font-weight: 600; color: #0d9488; margin-top: 1rem; }
-      .markdown-content p { line-height: 1.7; color: #334155; margin-bottom: 1rem; }
+      .markdown-content h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #0f766e;
+        border-bottom: 2px solid #ccfbf1;
+        padding-bottom: 0.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .markdown-content h2 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #115e59;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        background-color: #f0fdfa;
+        padding: 0.5rem;
+        border-left: 4px solid #0d9488;
+        border-radius: 4px;
+      }
+      .markdown-content h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #0d9488;
+        margin-top: 1rem;
+      }
+      .markdown-content p {
+        line-height: 1.7;
+        color: #334155;
+        margin-bottom: 1rem;
+      }
 
       /* Blockquote */
       .markdown-content blockquote {
@@ -106,31 +133,79 @@
       }
 
       /* Code Blocks */
-      .markdown-content pre { background-color: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; }
-      .markdown-content code { font-family: 'JetBrains Mono', monospace; color: #0d9488; background-color: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-size: 0.9em;}
+      .markdown-content pre {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+      .markdown-content code {
+        font-family: "JetBrains Mono", monospace;
+        color: #0d9488;
+        background-color: #f1f5f9;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+      }
 
       /* Tables for Report */
-      .table-report thead { background-color: #0d9488 !important; color: white !important; }
-      .table-report th { background-color: #0d9488 !important; color: white !important; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; }
-      .table-report td, .table-report th { vertical-align: middle; padding: 0.75rem 1rem; }
+      .table-report thead {
+        background-color: #0d9488 !important;
+        color: white !important;
+      }
+      .table-report th {
+        background-color: #0d9488 !important;
+        color: white !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
+      .table-report td,
+      .table-report th {
+        vertical-align: middle;
+        padding: 0.75rem 1rem;
+      }
 
       /* KaTeX Fixes for PDF/Print */
-      .katex-mathml { display: none !important; }
-      .katex { font-size: 1.1em; }
+      .katex-mathml {
+        display: none !important;
+      }
+      .katex {
+        font-size: 1.1em;
+      }
 
       /* Scrollbar */
-      ::-webkit-scrollbar { width: 8px; height: 8px; }
-      ::-webkit-scrollbar-track { background: #f1f5f9; }
-      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
 
       /* Print/PDF Utilities */
       @media print {
-        .no-print { display: none !important; }
-        .print-only { display: block !important; }
-        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .no-print {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+        }
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
       }
-      .print-only { display: none; }
+      .print-only {
+        display: none;
+      }
     </style>
   </head>
 
